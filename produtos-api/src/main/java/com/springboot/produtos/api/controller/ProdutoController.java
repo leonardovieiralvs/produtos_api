@@ -4,12 +4,11 @@ package com.springboot.produtos.api.controller;
 import com.springboot.produtos.api.model.Produto;
 import com.springboot.produtos.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,10 +18,21 @@ public class ProdutoController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/find")
+    public ResponseEntity<List<Produto>> findAll() {
+        List<Produto> all = productService.findAll();
+        return ResponseEntity.ok().body(all);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> findById(@PathVariable String id) {
+        return ResponseEntity.ok().body(productService.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Produto> salvar(@RequestBody Produto produto) {
         var id = UUID.randomUUID().toString();
         produto.setId(id);
-        return ResponseEntity.ok().body(productService.save(produto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(produto));
     }
 }
