@@ -30,9 +30,15 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> salvar(@RequestBody Produto produto) {
+    public ResponseEntity<Produto> save(@RequestBody Produto produto) {
         var id = UUID.randomUUID().toString();
         produto.setId(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(produto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        productService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
