@@ -2,6 +2,7 @@ package com.springboot.produtos.api.controller;
 
 
 import com.springboot.produtos.api.model.Produto;
+import com.springboot.produtos.api.model.dto.ProdutoPutDto;
 import com.springboot.produtos.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,19 +26,23 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> findById(@PathVariable String id) {
+    public ResponseEntity<Produto> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(productService.findById(id));
     }
 
     @PostMapping
     public ResponseEntity<Produto> save(@RequestBody Produto produto) {
-        var id = UUID.randomUUID().toString();
-        produto.setId(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(produto));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody ProdutoPutDto dto) {
+        productService.update(id, dto);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         productService.deleteById(id);
         return ResponseEntity.ok().build();
     }

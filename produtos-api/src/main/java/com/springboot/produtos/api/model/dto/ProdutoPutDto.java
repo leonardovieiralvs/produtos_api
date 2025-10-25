@@ -1,32 +1,17 @@
-package com.springboot.produtos.api.model;
+package com.springboot.produtos.api.model.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import lombok.*;
 
-import java.io.Serializable;
 
-@Entity
-public class Produto implements Serializable {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProdutoPutDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String descricao;
     private Double preco;
-
-    @Override
-    public String toString() {
-        return "Produto{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", preco=" + preco +
-                '}';
-    }
 
     public Long getId() {
         return id;
