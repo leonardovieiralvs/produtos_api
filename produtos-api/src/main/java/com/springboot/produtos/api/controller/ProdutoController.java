@@ -2,7 +2,7 @@ package com.springboot.produtos.api.controller;
 
 
 import com.springboot.produtos.api.model.Produto;
-import com.springboot.produtos.api.model.dto.ProdutoPutDto;
+import com.springboot.produtos.api.model.dto.ProdutoRecordDto;
 import com.springboot.produtos.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/produtos")
@@ -36,9 +35,9 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody ProdutoPutDto dto) {
-        productService.update(id, dto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Produto> update(@PathVariable Long id, @RequestBody ProdutoRecordDto produtoRecordDto) {
+        Produto produto = productService.update(id, produtoRecordDto);
+        return ResponseEntity.status(HttpStatus.OK).body(produto);
     }
 
     @DeleteMapping("/{id}")

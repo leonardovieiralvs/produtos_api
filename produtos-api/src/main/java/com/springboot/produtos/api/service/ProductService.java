@@ -1,11 +1,9 @@
 package com.springboot.produtos.api.service;
 
-import com.springboot.produtos.api.mapper.ProdutoMapper;
 import com.springboot.produtos.api.model.Produto;
-import com.springboot.produtos.api.model.dto.ProdutoPutDto;
+import com.springboot.produtos.api.model.dto.ProdutoRecordDto;
 import com.springboot.produtos.api.repository.ProductRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,13 +31,14 @@ public class ProductService {
         return productRepository.save(produto);
     }
 
-    @Transactional
-    public Produto update(Long id, ProdutoPutDto produtoDto) {
-        Produto existente = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado: " + id));
+    public Produto update(Long id, ProdutoRecordDto produtoRecordDto) {
+        Produto produto = productRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado", id));
 
-        ProdutoMapper.INSTANCE.updateFromDto(produtoDto, existente); // mapper configured para ignorar id
-        return productRepository.save(existente);
+        produto.setNome(produtoRecordDto.nome());
+        produto.setDescricao(produtoRecordDto.descricao());
+        produto.setPreco(produtoRecordDto.preco());
+
+        return productRepository.save(produto);
     }
 
     public void deleteById(Long id) {
