@@ -3,7 +3,7 @@ package com.springboot.produtos.api.controller;
 
 import com.springboot.produtos.api.model.Produto;
 import com.springboot.produtos.api.model.dto.ProdutoRecordDto;
-import com.springboot.produtos.api.service.ProductService;
+import com.springboot.produtos.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProductService productService;
+    private ProdutoService productService;
 
     @GetMapping("/find")
     public ResponseEntity<List<Produto>> findAll() {
