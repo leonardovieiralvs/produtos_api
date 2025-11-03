@@ -4,11 +4,13 @@ import com.springboot.produtos.api.arquiteturaspring.montadora.Motor;
 import com.springboot.produtos.api.arquiteturaspring.montadora.TipoMotor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class MontadoraConfiguration {
 
     @Bean
+    @Primary
     public Motor motorAspirado() {
         Motor motor = new Motor();
         motor.setCavalo(120);
