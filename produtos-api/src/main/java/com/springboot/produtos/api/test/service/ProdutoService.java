@@ -1,8 +1,8 @@
-package com.springboot.produtos.api.service;
+package com.springboot.produtos.api.test.service;
 
-import com.springboot.produtos.api.model.Produto;
-import com.springboot.produtos.api.model.dto.ProdutoRecordDto;
-import com.springboot.produtos.api.repository.ProdutoRepository;
+import com.springboot.produtos.api.test.service.model.Produto;
+import com.springboot.produtos.api.test.service.model.dto.ProdutoRecordDto;
+import com.springboot.produtos.api.test.service.repository.ProdutoRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 

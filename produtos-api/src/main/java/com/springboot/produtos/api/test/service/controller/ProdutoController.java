@@ -1,9 +1,9 @@
-package com.springboot.produtos.api.controller;
+package com.springboot.produtos.api.test.service.controller;
 
 
-import com.springboot.produtos.api.model.Produto;
-import com.springboot.produtos.api.model.dto.ProdutoRecordDto;
-import com.springboot.produtos.api.service.ProdutoService;
+import com.springboot.produtos.api.test.service.model.Produto;
+import com.springboot.produtos.api.test.service.model.dto.ProdutoRecordDto;
+import com.springboot.produtos.api.test.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

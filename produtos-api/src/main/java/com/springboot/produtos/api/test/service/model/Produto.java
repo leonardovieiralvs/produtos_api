@@ -1,4 +1,4 @@
-package com.springboot.produtos.api.model;
+package com.springboot.produtos.api.test.service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
